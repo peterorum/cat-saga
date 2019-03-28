@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo todo
+
+# rsync -crv dist/* server/* misc/* functal:/home/ec2-user/peterorum/

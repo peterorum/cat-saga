@@ -7,6 +7,7 @@ import 'sanitize.css';
 import { GlobalStyle } from 'Styles/global-styles';
 
 import { AppBar } from 'Components/app-bar/app-bar';
+import { Main } from 'Components/main/main';
 import { Footer } from 'Components/footer/footer';
 
 const theme = {
@@ -26,14 +27,7 @@ const App = () => (
       <GlobalStyle />
       <Box fill>
         <AppBar />
-        <Box
-          width="xlarge"
-          alignSelf="center"
-          align="center"
-          pad={{ vertical: 'medium' }}
-        >
-          app body2
-        </Box>
+        <Main />
         <Footer />
       </Box>
     </Grommet>

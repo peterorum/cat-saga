@@ -25,9 +25,9 @@ const Wrapper = styled.header`
     font-weight: bold;
   }
 
-  @media (min-width: ${breakpoints.mobile}) {
+/* @media (min-width: ${breakpoints.mobile}) {
     position: fixed;
-  }
+  } */
 `;
 
 export const Header = () => (

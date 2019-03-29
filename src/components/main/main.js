@@ -12,10 +12,12 @@ export const Main = () => {
 
   const getCats = () => {
     // eslint-disable-next-line compat/compat
+
+    // get cat-api key from https://thecatapi.com/
     fetch('https://api.thecatapi.com/v1/images/search', {
       method: 'get',
       headers: {
-        'x-api-key': '63937a0d-ea01-4880-84cf-b541906d60dc',
+        'x-api-key': process.env.cat_api,
       },
     })
       .then(response => response.json())

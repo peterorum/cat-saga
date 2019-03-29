@@ -14,7 +14,7 @@ export const Footer = () => (
   >
     <Text size="small">
       &copy; 2019 Peter Orum. Cats from{' '}
-      <Anchor href="https://docs.thecatapi.com/">The Cat API</Anchor>
+      <Anchor href="https://thecatapi.com/">The Cat API</Anchor>
     </Text>
   </Box>
 );

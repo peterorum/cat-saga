@@ -1,9 +1,28 @@
 import React, { useState, useEffect } from 'react';
 
+import styled from 'styled-components';
+
 import { Box, Button, Image } from 'grommet';
+
+const PhotoBox = styled(Box)`
+  &.photo {
+    transition: opacity 1s;
+    opacity: 1;
+
+    &.hidden {
+      opacity: 0;
+    }
+
+    img {
+      width: 90%;
+      max-height: 70vh;
+    }
+  }
+`;
 
 export const Main = () => {
   const [src, setSrc] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   // on mount
   useEffect(() => {
@@ -11,10 +30,11 @@ export const Main = () => {
   }, []);
 
   const getCats = () => {
-    // eslint-disable-next-line compat/compat
+    setIsLoading(true);
 
     // get cat-api key from https://thecatapi.com/
-    fetch('https://api.thecatapi.com/v1/images/search', {
+    // eslint-disable-next-line compat/compat
+    fetch('https://api.thecatapi.com/v1/images/search?mime_types=jpg,png', {
       method: 'get',
       headers: {
         'x-api-key': process.env.cat_api,
@@ -23,8 +43,10 @@ export const Main = () => {
       .then(response => response.json())
       .then(json => {
         setSrc(json[0].url);
+        setTimeout(() => setIsLoading(false), 1000);
       })
       .catch(error => {
+        // eslint-disable-next-line no-console
         console.error('fetch error:', error);
       });
   };
@@ -40,15 +62,16 @@ export const Main = () => {
       <Box>
         <Button
           label="Another"
+          disabled={isLoading}
           onClick={() => {
             getCats();
           }}
         />
       </Box>
 
-      <Box pad="medium">
-        {src && <Image src={src} fit="cover" style={{ maxHeight: '70vh' }} />}
-      </Box>
+      <PhotoBox pad="medium" className={`photo ${isLoading ? 'hidden' : ''}`}>
+        {src && <Image src={src} fit="cover" />}
+      </PhotoBox>
     </Box>
   );
 };

@@ -1,4 +1,4 @@
-import { SET_CAT_URL } from 'Redux/actions/cat';
+import { CAT_FETCH_SUCCEEDED } from 'Redux/actions/cat';
 
 const initialState = {
   url: '',
@@ -6,7 +6,7 @@ const initialState = {
 
 export const catReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_CAT_URL: {
+    case CAT_FETCH_SUCCEEDED: {
       const newState = {
         ...state,
         url: action.url,

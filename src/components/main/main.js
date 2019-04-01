@@ -10,11 +10,11 @@ import styled from 'styled-components';
 
 import { Box, Button, Image } from 'grommet';
 
-import { setCatUrl } from 'Redux/actions/cat';
+import { getCatUrl } from 'Redux/actions/cat';
 
 const PhotoBox = styled(Box)`
   &.photo {
-    transition: opacity 1s;
+    transition: opacity 1s ease-in;
     opacity: 1;
 
     &.hidden {
@@ -29,36 +29,16 @@ const PhotoBox = styled(Box)`
 `;
 
 export const Main = ({ cat, handleCatUrl }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // on mount
   useEffect(() => {
     getCats();
   }, []);
 
-  const getCats = async () => {
+  const getCats = () => {
     setIsLoading(true);
-
-    try {
-      // get cat-api key from https://thecatapi.com/
-      const response = await fetch(
-        'https://api.thecatapi.com/v1/images/search?mime_types=jpg,png',
-        {
-          method: 'get',
-          headers: {
-            'x-api-key': process.env.cat_api,
-          },
-        },
-      );
-
-      const json = await response.json();
-
-      handleCatUrl(json[0].url);
-      setTimeout(() => setIsLoading(false), 1000);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('fetch error:', error);
-    }
+    handleCatUrl();
   };
 
   return (
@@ -80,7 +60,9 @@ export const Main = ({ cat, handleCatUrl }) => {
       </Box>
 
       <PhotoBox pad="medium" className={`photo ${isLoading ? 'hidden' : ''}`}>
-        {cat.url && <Image src={cat.url} fit="cover" />}
+        {cat.url && (
+          <Image src={cat.url} onLoad={() => setIsLoading(false)} fit="cover" />
+        )}
       </PhotoBox>
     </Box>
   );
@@ -96,9 +78,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleCatUrl: url => {
-    dispatch(setCatUrl(url));
-  },
+  handleCatUrl: () => dispatch(getCatUrl()),
 });
 
 const MainContainer = connect(

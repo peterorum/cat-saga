@@ -16,6 +16,7 @@ module.exports = {
     '^Components(.*)$': '<rootDir>/src/components$1',
     '^Styles(.*)$': '<rootDir>/src/styles$1',
     '^Images(.*)$': '<rootDir>/images$1',
+    '^Redux(.*)$': '<rootDir>/src/redux$1',
   },
   testRegex: '.*\\.test\\.js$',
   snapshotSerializers: [],

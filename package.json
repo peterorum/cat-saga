@@ -67,6 +67,8 @@
     "grommet-icons": "^4.2.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
     "sanitize.css": "^8.0.0",
     "styled-components": "^4.1.3"
   }

@@ -34,10 +34,11 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      // also update jest.config.js
       Components: path.resolve(__dirname, 'src/components/'),
       Styles: path.resolve(__dirname, 'src/styles/'),
       Images: path.resolve(__dirname, 'images/'),
+      Redux: path.resolve(__dirname, 'src/redux/'),
+      // also update jest.config.js
     },
   },
 };

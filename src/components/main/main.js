@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
+import PropTypes from 'prop-types';
+
+import { connect } from 'react-redux';
+
 import styled from 'styled-components';
 
 import { Box, Button, Image } from 'grommet';
+
+import { setCatUrl } from 'Redux/actions/cat';
 
 const PhotoBox = styled(Box)`
   &.photo {
@@ -20,8 +26,7 @@ const PhotoBox = styled(Box)`
   }
 `;
 
-export const Main = () => {
-  const [src, setSrc] = useState();
+export const Main = ({ cat, handleCatUrl }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   // on mount
@@ -42,7 +47,7 @@ export const Main = () => {
     })
       .then(response => response.json())
       .then(json => {
-        setSrc(json[0].url);
+        handleCatUrl(json[0].url);
         setTimeout(() => setIsLoading(false), 1000);
       })
       .catch(error => {
@@ -70,8 +75,30 @@ export const Main = () => {
       </Box>
 
       <PhotoBox pad="medium" className={`photo ${isLoading ? 'hidden' : ''}`}>
-        {src && <Image src={src} fit="cover" />}
+        {cat.url && <Image src={cat.url} fit="cover" />}
       </PhotoBox>
     </Box>
   );
 };
+
+Main.propTypes = {
+  cat: PropTypes.object,
+  handleCatUrl: PropTypes.func,
+};
+
+const mapStateToProps = state => ({
+  cat: state.cat,
+});
+
+const mapDispatchToProps = dispatch => ({
+  handleCatUrl: url => {
+    dispatch(setCatUrl(url));
+  },
+});
+
+const MainContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Main);
+
+export default MainContainer;

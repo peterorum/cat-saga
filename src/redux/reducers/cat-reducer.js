@@ -1,4 +1,4 @@
-import { CAT_FETCH_SUCCEEDED } from 'Redux/actions/cat';
+import { CAT_FETCH_SUCCEEDED } from 'Redux/actions/cat-actions';
 
 const initialState = {
   url: '',

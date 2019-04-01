@@ -7,7 +7,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
 import rootReducer from 'Redux/reducers';
-import catSaga from 'Redux/sagas/cat';
+import catSaga from 'Redux/sagas/cat-saga';
 
 import App from './components/app/app';
 

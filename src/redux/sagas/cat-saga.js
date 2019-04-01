@@ -4,7 +4,7 @@ import {
   CAT_FETCH_REQUESTED,
   CAT_FETCH_SUCCEEDED,
   CAT_FETCH_FAILED,
-} from 'Redux/actions/cat';
+} from 'Redux/actions/cat-actions';
 
 function* fetchCat() {
   try {

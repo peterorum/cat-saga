@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 import { Box, Button, Image } from 'grommet';
 
-import { getCatUrl } from 'Redux/actions/cat';
+import { getCatUrl } from 'Redux/actions/cat-actions';
 
 const PhotoBox = styled(Box)`
   &.photo {

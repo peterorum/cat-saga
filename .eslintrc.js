@@ -84,5 +84,6 @@ module.exports = {
         config: './webpack.config.js',
       },
     },
+    polyfills: ['fetch'],
   },
 };

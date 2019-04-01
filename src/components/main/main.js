@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 
+import '@babel/polyfill';
+
 import { connect } from 'react-redux';
 
 import styled from 'styled-components';
@@ -34,26 +36,29 @@ export const Main = ({ cat, handleCatUrl }) => {
     getCats();
   }, []);
 
-  const getCats = () => {
+  const getCats = async () => {
     setIsLoading(true);
 
-    // get cat-api key from https://thecatapi.com/
-    // eslint-disable-next-line compat/compat
-    fetch('https://api.thecatapi.com/v1/images/search?mime_types=jpg,png', {
-      method: 'get',
-      headers: {
-        'x-api-key': process.env.cat_api,
-      },
-    })
-      .then(response => response.json())
-      .then(json => {
-        handleCatUrl(json[0].url);
-        setTimeout(() => setIsLoading(false), 1000);
-      })
-      .catch(error => {
-        // eslint-disable-next-line no-console
-        console.error('fetch error:', error);
-      });
+    try {
+      // get cat-api key from https://thecatapi.com/
+      const response = await fetch(
+        'https://api.thecatapi.com/v1/images/search?mime_types=jpg,png',
+        {
+          method: 'get',
+          headers: {
+            'x-api-key': process.env.cat_api,
+          },
+        },
+      );
+
+      const json = await response.json();
+
+      handleCatUrl(json[0].url);
+      setTimeout(() => setIsLoading(false), 1000);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('fetch error:', error);
+    }
   };
 
   return (

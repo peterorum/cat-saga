@@ -22,6 +22,7 @@ export function* fetchCat() {
 
     yield put({ type: CAT_FETCH_SUCCEEDED, url: json[0].url });
   } catch (e) {
+    console.log('error', e);
     yield put({ type: CAT_FETCH_FAILED, message: e.message });
   }
 }

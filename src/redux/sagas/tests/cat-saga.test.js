@@ -1,4 +1,4 @@
-import { put } from 'redux-saga/effects';
+import { runSaga } from 'redux-saga';
 
 import { CAT_FETCH_SUCCEEDED } from 'Redux/actions/cat-actions';
 import { fetchCat } from '../cat-saga';
@@ -8,23 +8,21 @@ describe('cat saga', () => {
     fetch.resetMocks();
   });
 
-  it('should return url', () => {
-    const mockResponse = { json: () => [{ url: 'http://a.cat' }] };
+  it('should return url', async () => {
+    const dispatched = [];
 
-    const gen = fetchCat();
+    fetch.mockResponseOnce(JSON.stringify([{ url: 'http://a.cat' }]));
 
-    gen.next();
+    await runSaga(
+      {
+        dispatch: action => dispatched.push(action),
+        getState: () => ({}),
+      },
+      fetchCat,
+    ).toPromise();
 
-    const result = gen.next(mockResponse).value;
-
-    expect(result).toEqual(mockResponse.json());
-
-    const final = gen.next(mockResponse.json()).value;
-
-    expect(final).toEqual(
-      put({ type: CAT_FETCH_SUCCEEDED, url: 'http://a.cat' }),
-    );
-
-    expect(gen.next().done).toBeTruthy();
+    expect(dispatched).toEqual([
+      { type: CAT_FETCH_SUCCEEDED, url: 'http://a.cat' },
+    ]);
   });
 });

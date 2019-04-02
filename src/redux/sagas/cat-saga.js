@@ -6,7 +6,7 @@ import {
   CAT_FETCH_FAILED,
 } from 'Redux/actions/cat-actions';
 
-function* fetchCat() {
+export function* fetchCat() {
   try {
     const response = yield fetch(
       'https://api.thecatapi.com/v1/images/search?mime_types=jpg,png',

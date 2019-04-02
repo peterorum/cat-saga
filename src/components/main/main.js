@@ -11,6 +11,7 @@ import styled from 'styled-components';
 import { Box, Button, Image } from 'grommet';
 
 import { getCatUrl } from 'Redux/actions/cat-actions';
+import { makeCatUrlSelector } from 'Redux/selectors/cat-selectors';
 
 const PhotoBox = styled(Box)`
   &.photo {
@@ -28,7 +29,7 @@ const PhotoBox = styled(Box)`
   }
 `;
 
-export const Main = ({ cat, handleCatUrl }) => {
+export const Main = ({ catUrl, handleCatUrl }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   // on mount
@@ -60,8 +61,8 @@ export const Main = ({ cat, handleCatUrl }) => {
       </Box>
 
       <PhotoBox pad="medium" className={`photo ${isLoading ? 'hidden' : ''}`}>
-        {cat.url && (
-          <Image src={cat.url} onLoad={() => setIsLoading(false)} fit="cover" />
+        {catUrl && (
+          <Image src={catUrl} onLoad={() => setIsLoading(false)} fit="cover" />
         )}
       </PhotoBox>
     </Box>
@@ -69,12 +70,12 @@ export const Main = ({ cat, handleCatUrl }) => {
 };
 
 Main.propTypes = {
-  cat: PropTypes.object,
+  catUrl: PropTypes.string,
   handleCatUrl: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
-  cat: state.cat,
+  catUrl: makeCatUrlSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({

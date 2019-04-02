@@ -1,5 +1,5 @@
 #!/bin/sh
 
-echo todo
+echo deploying cats
 
-# rsync -crv dist/* server/* misc/* functal:/home/ec2-user/peterorum/
+rsync -crv dist/* server/* misc/* functal:/home/ec2-user/cats/

@@ -67,6 +67,7 @@
     "@babel/polyfill": "^7.4.0",
     "grommet": "^2.6.5",
     "grommet-icons": "^4.2.0",
+    "immer": "^2.1.4",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",

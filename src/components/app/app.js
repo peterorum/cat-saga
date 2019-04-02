@@ -21,7 +21,7 @@ const theme = {
   },
 };
 
-const App = () => (
+export const App = () => (
   <>
     <Grommet theme={theme} full>
       <GlobalStyle />

@@ -24,5 +24,7 @@ describe('cat saga', () => {
     expect(final).toEqual(
       put({ type: CAT_FETCH_SUCCEEDED, url: 'http://a.cat' }),
     );
+
+    expect(gen.next().done).toBeTruthy();
   });
 });

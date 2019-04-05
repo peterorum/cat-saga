@@ -31,11 +31,27 @@ const enhancer = composeEnhancers(
 
 const store = createStore(rootReducer, enhancer);
 
+if (module.hot) {
+  module.hot.accept('Redux/reducers', () => {
+    store.replaceReducer(rootReducer);
+  });
+}
+
 sagaMiddleware.run(catSaga);
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root'),
-);
+const render = () => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root'),
+  );
+};
+
+render();
+
+if (module.hot) {
+  module.hot.accept('./components/app/app', () => {
+    render();
+  });
+}

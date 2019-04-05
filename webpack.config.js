@@ -1,11 +1,10 @@
-const webpack = require('webpack');
+// const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
     index: './src/index.js',
-    vendor: ['styled-components'],
   },
 
   output: {

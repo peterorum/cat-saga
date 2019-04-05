@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Tutorial site for redux saga",
   "main": "index.js",
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --hot",
     "clean-dist": "rimraf dist/*",

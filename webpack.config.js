@@ -55,4 +55,5 @@ module.exports = {
       // also update jest.config.js
     },
   },
+  devtool: 'source-map',
 };

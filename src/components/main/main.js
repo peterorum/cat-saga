@@ -15,6 +15,9 @@ const PhotoBox = styled.div`
   &.photo {
     transition: opacity 1s ease-in;
     opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &.hidden {
       opacity: 0;
@@ -23,6 +26,7 @@ const PhotoBox = styled.div`
     img {
       width: 90%;
       max-height: 70vh;
+      object-fit: contain;
     }
   }
 `;
@@ -41,14 +45,7 @@ export const Main = ({ catUrl, handleCatUrl }) => {
   };
 
   return (
-    <div>
-      {/*
-      width="xlarge"
-      alignSelf="center"
-      align="center"
-      pad={{ vertical: 'medium' }}
-      direction="column"
-       */}
+    <div className="text-center">
       <div>
         <button
           type="button"
@@ -61,9 +58,12 @@ export const Main = ({ catUrl, handleCatUrl }) => {
         </button>
       </div>
 
-      <PhotoBox pad="medium" className={`photo ${isLoading ? 'hidden' : ''}`}>
-        {catUrl && <img src={catUrl} onLoad={() => setIsLoading(false)} />}
-        {/* fit="cover"  */}
+      <PhotoBox
+        className={`photo text-center mt-8 ${isLoading ? 'hidden' : ''}`}
+      >
+        {catUrl && (
+          <img src={catUrl} alt="cat" onLoad={() => setIsLoading(false)} />
+        )}
       </PhotoBox>
     </div>
   );

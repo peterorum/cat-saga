@@ -4,8 +4,17 @@
 
 @tailwind utilities;
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+}
+
 h1 {
-  @apply text-2xl;
+  @apply text-3xl;
 }
 
 h2 {
@@ -14,4 +23,14 @@ h2 {
 
 h3 {
   @apply text-lg;
+}
+
+button {
+  padding: 1rem;
+  border: 1px solid #000;
+  @apply rounded-lg;
+}
+
+button:hover {
+  @apply bg-orange-200;
 }

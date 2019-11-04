@@ -8,12 +8,10 @@ import { connect } from 'react-redux';
 
 import styled from 'styled-components';
 
-import { Box, Button, Image } from 'grommet';
-
 import { getCatUrl } from 'Redux/actions/cat-actions';
 import { makeCatUrlSelector } from 'Redux/selectors/cat-selectors';
 
-const PhotoBox = styled(Box)`
+const PhotoBox = styled.div`
   &.photo {
     transition: opacity 1s ease-in;
     opacity: 1;
@@ -43,29 +41,31 @@ export const Main = ({ catUrl, handleCatUrl }) => {
   };
 
   return (
-    <Box
+    <div>
+      {/*
       width="xlarge"
       alignSelf="center"
       align="center"
       pad={{ vertical: 'medium' }}
       direction="column"
-    >
-      <Box>
-        <Button
-          label="Another"
+       */}
+      <div>
+        <button
+          type="button"
           disabled={isLoading}
           onClick={() => {
             getCats();
           }}
-        />
-      </Box>
+        >
+          Another
+        </button>
+      </div>
 
       <PhotoBox pad="medium" className={`photo ${isLoading ? 'hidden' : ''}`}>
-        {catUrl && (
-          <Image src={catUrl} onLoad={() => setIsLoading(false)} fit="cover" />
-        )}
+        {catUrl && <img src={catUrl} onLoad={() => setIsLoading(false)} />}
+        {/* fit="cover"  */}
       </PhotoBox>
-    </Box>
+    </div>
   );
 };
 

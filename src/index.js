@@ -11,6 +11,8 @@ import catSaga from 'Redux/sagas/cat-saga';
 
 import App from './components/app/app';
 
+import './styles/styles.css';
+
 const sagaMiddleware = createSagaMiddleware();
 
 /* eslint-disable no-underscore-dangle */

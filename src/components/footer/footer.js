@@ -1,9 +1,7 @@
 import React from 'react';
 
-import { Box, Text, Anchor } from 'grommet';
-
 export const Footer = () => (
-  <Box
+  <div
     align="end"
     pad="small"
     border={{
@@ -12,9 +10,9 @@ export const Footer = () => (
       side: 'top',
     }}
   >
-    <Text size="small">
+    <div size="small">
       &copy; 2019 Peter Orum. Cats from{' '}
-      <Anchor href="https://thecatapi.com/">The Cat API</Anchor>
-    </Text>
-  </Box>
+      <a href="https://thecatapi.com/">The Cat API</a>
+    </div>
+  </div>
 );

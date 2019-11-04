@@ -4,4 +4,11 @@ echo deploying cats
 
 npm run build
 
-rsync -crv dist/* server/* misc/* functal:/home/ec2-user/cats/
+# non-imported images, if any
+#cp images/code.png dist/images
+#cp images/functal-20161106063441235.jpg dist/images
+
+aws s3 sync dist s3://catspeterorum --acl public-read --exclude .DS_Store
+
+# favicon, robots.txt etc
+aws s3 sync misc s3://catspeterorum --acl public-read --exclude .DS_Store

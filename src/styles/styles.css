@@ -9,8 +9,13 @@ h6 {
   font-weight: bold;
 }
 
+body {
+  font-family: Lato, Arial;
+}
+
 h1 {
   @apply text-3xl;
+  font-family: Merriweather;
 }
 
 h2 {

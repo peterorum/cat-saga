@@ -6,16 +6,16 @@ h3,
 h4,
 h5,
 h6 {
+  @apply font-serif;
   font-weight: bold;
 }
 
 body {
-  font-family: Lato, Arial;
+  @apply font-sans;
 }
 
 h1 {
   @apply text-3xl;
-  font-family: Merriweather;
 }
 
 h2 {

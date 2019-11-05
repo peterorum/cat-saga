@@ -1,9 +1,5 @@
 @tailwind base;
 
-@tailwind components;
-
-@tailwind utilities;
-
 h1,
 h2,
 h3,
@@ -24,6 +20,10 @@ h2 {
 h3 {
   @apply text-lg;
 }
+
+@tailwind components;
+
+@tailwind utilities;
 
 button {
   padding: 1rem;

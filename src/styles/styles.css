@@ -28,6 +28,8 @@ h3 {
 
 @tailwind components;
 
+/* add composed styled using @apply here */
+
 @tailwind utilities;
 
 button {

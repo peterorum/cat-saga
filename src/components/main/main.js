@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import '@babel/polyfill';
 
-import { connect } from 'react-redux';
+import { connect, useSelector, useDispatch } from 'react-redux';
 
 import styled from 'styled-components';
 
@@ -30,8 +30,10 @@ const PhotoBox = styled.div`
   }
 `;
 
-export const Main = ({ catUrl, handleCatUrl }) => {
+export const Main = ({ catUrl }) => {
   const [isLoading, setIsLoading] = useState(true);
+
+  const dispatch = useDispatch();
 
   // on mount
   useEffect(() => {
@@ -40,7 +42,7 @@ export const Main = ({ catUrl, handleCatUrl }) => {
 
   const getCats = () => {
     setIsLoading(true);
-    handleCatUrl();
+    dispatch.cat.fetchRequested();
   };
 
   return (

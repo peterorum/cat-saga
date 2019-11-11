@@ -1,6 +1,5 @@
 import { runSaga } from 'redux-saga';
 
-import { CAT_FETCH_SUCCEEDED } from 'Redux/actions/cat-actions';
 import { fetchCat } from '../cat-saga';
 
 describe('cat saga', () => {
@@ -22,7 +21,7 @@ describe('cat saga', () => {
     ).toPromise();
 
     expect(dispatched).toEqual([
-      { type: CAT_FETCH_SUCCEEDED, url: 'http://a.cat' },
+      { type: 'cat/fetchSucceeded', url: 'http://a.cat' },
     ]);
   });
 });

@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 
 import styled from 'styled-components';
 
-import { getCatUrl } from 'Redux/actions/cat-actions';
 import { makeCatUrlSelector } from 'Redux/selectors/cat-selectors';
 
 const PhotoBox = styled.div`
@@ -79,7 +78,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleCatUrl: () => dispatch(getCatUrl()),
+  handleCatUrl: () => dispatch.cat.fetchRequested(),
 });
 
 const MainContainer = connect(

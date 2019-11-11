@@ -75,7 +75,8 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.0",
-    "immer": "^2.1.4",
+    "@rematch/core": "^1.2.0",
+    "@rematch/immer": "^1.2.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",

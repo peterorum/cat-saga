@@ -30,7 +30,7 @@ const store = init({
   plugins: [immer()],
 });
 
-sagaMiddleware.run(catSaga);
+sagaMiddleware.run(catSaga, store.dispatch);
 
 const render = () => {
   ReactDOM.render(

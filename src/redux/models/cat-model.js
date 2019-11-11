@@ -10,7 +10,7 @@ export default {
     },
 
     fetchFailed: (state, payload) => {
-      console.error('fetch failed', payload.message);
+      console.error('fetch failed', payload.message); // eslint-disable-line no-console
 
       return state;
     },

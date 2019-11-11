@@ -8,20 +8,12 @@ describe('cat saga', () => {
   });
 
   it('should return url', async () => {
-    const dispatched = [];
+    const dispatch = { cat: { fetchSucceeded: jest.fn() } };
 
     fetch.mockResponseOnce(JSON.stringify([{ url: 'http://a.cat' }]));
 
-    await runSaga(
-      {
-        dispatch: action => dispatched.push(action),
-        getState: () => ({}),
-      },
-      fetchCat,
-    ).toPromise();
+    await runSaga({}, fetchCat, dispatch).toPromise();
 
-    expect(dispatched).toEqual([
-      { type: 'cat/fetchSucceeded', url: 'http://a.cat' },
-    ]);
+    expect(dispatch.cat.fetchSucceeded).toHaveBeenCalled();
   });
 });

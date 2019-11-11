@@ -4,6 +4,7 @@ export default {
     fetchRequested: state => state,
 
     fetchSucceeded: (state, payload) => {
+      // using immer, so can modify directly
       state.url = payload.url;
 
       return state;

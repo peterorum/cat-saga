@@ -2,5 +2,6 @@ Sample application using redux saga & public cat api https://www.programmableweb
 
 - Styled Components
 - Tailwind.css
+- Rematch
 - React hooks
 - Immer

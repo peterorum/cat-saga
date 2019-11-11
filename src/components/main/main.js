@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import PropTypes from 'prop-types';
-
 import '@babel/polyfill';
 
-import { connect, useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import styled from 'styled-components';
 
@@ -30,7 +28,7 @@ const PhotoBox = styled.div`
   }
 `;
 
-export const Main = ({ catUrl }) => {
+export const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const dispatch = useDispatch();
@@ -44,6 +42,8 @@ export const Main = ({ catUrl }) => {
     setIsLoading(true);
     dispatch.cat.fetchRequested();
   };
+
+  const catUrl = useSelector(makeCatUrlSelector);
 
   return (
     <div className="text-center">
@@ -70,22 +70,4 @@ export const Main = ({ catUrl }) => {
   );
 };
 
-Main.propTypes = {
-  catUrl: PropTypes.string,
-  handleCatUrl: PropTypes.func,
-};
-
-const mapStateToProps = state => ({
-  catUrl: makeCatUrlSelector(state),
-});
-
-const mapDispatchToProps = dispatch => ({
-  handleCatUrl: () => dispatch.cat.fetchRequested(),
-});
-
-const MainContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Main);
-
-export default MainContainer;
+export default Main;

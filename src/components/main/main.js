@@ -48,13 +48,7 @@ export const Main = () => {
   return (
     <div className="text-center">
       <div>
-        <button
-          type="button"
-          disabled={isLoading}
-          onClick={() => {
-            getCats();
-          }}
-        >
+        <button type="button" disabled={isLoading} onClick={getCats}>
           Another
         </button>
       </div>

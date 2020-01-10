@@ -1,6 +1,12 @@
-import { takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 
-export function* fetchCat(dispatch) {
+import {
+  CAT_FETCH_REQUESTED,
+  CAT_FETCH_SUCCEEDED,
+  CAT_FETCH_FAILED,
+} from 'Redux/actions/cat-actions';
+
+export function* fetchCat() {
   try {
     const response = yield fetch(
       'https://api.thecatapi.com/v1/images/search?mime_types=jpg,png',
@@ -14,14 +20,15 @@ export function* fetchCat(dispatch) {
 
     const json = yield response.json();
 
-    dispatch.cat.fetchSucceeded({ url: json[0].url });
+    yield put({ type: CAT_FETCH_SUCCEEDED, url: json[0].url });
   } catch (e) {
-    dispatch.cat.fetchFailed({ message: e.message });
+    console.log('error', e);
+    yield put({ type: CAT_FETCH_FAILED, message: e.message });
   }
 }
 
-function* catSaga(dispatch) {
-  yield takeLatest('cat/fetchRequested', fetchCat, dispatch);
+function* catSaga() {
+  yield takeLatest(CAT_FETCH_REQUESTED, fetchCat);
 }
 
 export default catSaga;

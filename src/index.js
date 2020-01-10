@@ -2,14 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '@babel/polyfill';
 
-import { init } from '@rematch/core';
-import immer from '@rematch/immer';
-
 import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
-// models
-import cat from 'Redux/models/cat-model';
+import rootReducer from 'Redux/reducers';
 
 // sagas
 import catSaga from 'Redux/sagas/cat-saga';
@@ -20,15 +17,23 @@ import './styles/styles.css';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const store = init({
-  models: {
-    cat,
-  },
-  redux: {
-    middlewares: [sagaMiddleware],
-  },
-  plugins: [immer()],
-});
+/* eslint-disable no-underscore-dangle */
+
+const composeEnhancers =
+  process.env.NODE_ENV !== 'production' &&
+  typeof window === 'object' &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+    : compose;
+
+/* eslint-enable */
+
+const enhancer = composeEnhancers(
+  applyMiddleware(sagaMiddleware),
+  // other store enhancers if any
+);
+
+const store = createStore(rootReducer, enhancer);
 
 sagaMiddleware.run(catSaga, store.dispatch);
 

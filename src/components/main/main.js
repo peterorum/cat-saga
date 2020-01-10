@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import { makeCatUrlSelector } from 'Redux/selectors/cat-selectors';
+import { getCatUrl } from 'Redux/actions/cat-actions';
 
 const PhotoBox = styled.div`
   &.photo {
@@ -40,9 +41,8 @@ export const Main = () => {
 
   const getCats = () => {
     setIsLoading(true);
-    dispatch.cat.fetchRequested();
+    dispatch(getCatUrl());
   };
-
   const catUrl = useSelector(makeCatUrlSelector);
 
   return (

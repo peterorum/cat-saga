@@ -1,5 +1,6 @@
 import { runSaga } from 'redux-saga';
 
+import { CAT_FETCH_SUCCEEDED } from 'Redux/actions/cat-actions';
 import { fetchCat } from '../cat-saga';
 
 describe('cat saga', () => {
@@ -8,12 +9,20 @@ describe('cat saga', () => {
   });
 
   it('should return url', async () => {
-    const dispatch = { cat: { fetchSucceeded: jest.fn() } };
+    const dispatched = [];
 
     fetch.mockResponseOnce(JSON.stringify([{ url: 'http://a.cat' }]));
 
-    await runSaga({}, fetchCat, dispatch).toPromise();
+    await runSaga(
+      {
+        dispatch: action => dispatched.push(action),
+        getState: () => ({}),
+      },
+      fetchCat,
+    ).toPromise();
 
-    expect(dispatch.cat.fetchSucceeded).toHaveBeenCalled();
+    expect(dispatched).toEqual([
+      { type: CAT_FETCH_SUCCEEDED, url: 'http://a.cat' },
+    ]);
   });
 });

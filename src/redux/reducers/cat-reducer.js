@@ -1,21 +1,18 @@
-import { produce } from 'immer';
+import { createAction } from '@reduxjs/toolkit';
 
-/* eslint-disable no-param-reassign */
-
-import { CAT_FETCH_SUCCEEDED } from 'Redux/actions/cat-actions';
+const catFetchSucceeded = createAction('CAT_FETCH_SUCCEEDED');
 
 const initialState = {
   url: '',
 };
 
-export const catReducer = (state = initialState, action) =>
-  produce(state, draft => {
-    switch (action.type) {
-      case CAT_FETCH_SUCCEEDED:
-        draft.url = action.url;
-        break;
+export const catReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case catFetchSucceeded.type:
+      state.url = action.url;
+      return state;
 
-      default:
-        break;
-    }
-  });
+    default:
+      return state;
+  }
+};

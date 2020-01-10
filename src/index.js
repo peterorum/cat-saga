@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import '@babel/polyfill';
 
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { configureStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
 import rootReducer from 'Redux/reducers';
@@ -33,7 +33,7 @@ const enhancer = composeEnhancers(
   // other store enhancers if any
 );
 
-const store = createStore(rootReducer, enhancer);
+const store = configureStore({ reducer: rootReducer, enhancers: enhancer });
 
 sagaMiddleware.run(catSaga, store.dispatch);
 

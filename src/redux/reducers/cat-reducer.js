@@ -1,18 +1,52 @@
-import { createAction } from '@reduxjs/toolkit';
-
-const catFetchSucceeded = createAction('CAT_FETCH_SUCCEEDED');
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   url: '',
 };
 
-export const catReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case catFetchSucceeded.type:
-      state.url = action.url;
-      return state;
+const catSlice = createSlice({
+  name: 'cat',
+  initialState,
+  reducers: {
+    catFetchSucceeded: (state, action) => {
+      state.url = action.payload.url;
+    },
+  },
+});
 
-    default:
-      return state;
+export const { catFetchSucceeded } = catSlice.actions;
+
+export default catSlice.reducer;
+
+// async
+
+const fetchCatUrl = async () => {
+  try {
+    const response = await fetch(
+      'https://api.thecatapi.com/v1/images/search?mime_types=jpg,png',
+      {
+        method: 'get',
+        headers: {
+          'x-api-key': process.env.cat_api,
+        },
+      },
+    );
+
+    const json = await response.json();
+
+    const { url } = json[0];
+
+    return { url };
+  } catch (e) {
+    throw e.message;
+  }
+};
+
+export const getCatUrl = () => async dispatch => {
+  try {
+    const data = await fetchCatUrl();
+    dispatch(catFetchSucceeded(data));
+  } catch (err) {
+    console.error(err); // eslint-disable-line no-console
   }
 };

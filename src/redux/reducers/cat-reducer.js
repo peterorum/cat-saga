@@ -42,7 +42,7 @@ const fetchCatUrl = async () => {
   }
 };
 
-// call this in application
+// call dispatch(getCatUrl()) in application for thunk to handle
 export const getCatUrl = () => async dispatch => {
   try {
     const data = await fetchCatUrl();

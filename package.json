@@ -1,7 +1,7 @@
 {
   "name": "cats-app",
   "version": "1.0.0",
-  "description": "Tutorial site for redux saga",
+  "description": "Tutorial site for redux toolkit",
   "main": "index.js",
   "sideEffects": [
     "*.css"

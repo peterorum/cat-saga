@@ -42,6 +42,7 @@ const fetchCatUrl = async () => {
   }
 };
 
+// call this in application
 export const getCatUrl = () => async dispatch => {
   try {
     const data = await fetchCatUrl();

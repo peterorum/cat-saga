@@ -7,16 +7,24 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import rootReducer from 'Redux/reducers';
 
+import { ThemeProvider } from 'styled-components';
+
 import App from './components/app/app';
 
-import './styles/styles.css';
+import 'sanitize.css/sanitize.css';
+
+import 'typeface-open-sans';
+
+import { theme } from './styles/theme';
 
 const store = configureStore({ reducer: rootReducer });
 
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </Provider>,
     document.getElementById('root'),
   );

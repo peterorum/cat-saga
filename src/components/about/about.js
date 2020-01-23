@@ -1,19 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { layout, flexbox, typography, space } from 'styled-system';
 
-const AboutContainer = styled.div``;
+const Box = styled.div`
+  ${layout}
+  ${typography}
+  ${flexbox}
+  ${space}
+`;
 
 export const About = () => {
   return (
-    <AboutContainer>
-      <div className="flex flex-col items-center">
-        <div className="mb-6">About cats</div>
-        <div>
-          <Link to="/">Home</Link>
-        </div>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Box mb={4}>About cats</Box>
+      <div>
+        <Link to="/">Home</Link>
       </div>
-    </AboutContainer>
+    </Box>
   );
 };
 

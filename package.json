@@ -43,7 +43,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^6.0.3",
-    "css-loader": "^3.2.0",
+    "css-loader": "^3.4.2",
     "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-airbnb-base": "^14.0.0",
@@ -60,7 +60,6 @@
     "jest": "^24.9.0",
     "jest-fetch-mock": "^2.1.2",
     "jest-styled-components": "^6.3.3",
-    "postcss-loader": "^3.0.0",
     "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
     "style-loader": "^1.0.0",
@@ -82,8 +81,10 @@
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.4",
     "reselect": "^4.0.0",
+    "sanitize.css": "^11.0.0",
     "styled-components": "^4.4.1",
-    "tailwindcss": "^1.1.3",
+    "styled-system": "^5.1.4",
+    "typeface-open-sans": "0.0.75",
     "whatwg-fetch": "^3.0.0"
   }
 }

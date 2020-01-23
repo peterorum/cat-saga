@@ -5,11 +5,32 @@ import '@babel/polyfill';
 import { useSelector, useDispatch } from 'react-redux';
 
 import styled from 'styled-components';
+import { typography, space } from 'styled-system';
 
 import { makeCatUrlSelector } from 'Redux/selectors/cat-selectors';
 import { getCatUrl } from 'Redux/reducers/cat-reducer';
 
+const Box = styled.div`
+  ${typography}
+`;
+
+const Button = styled.button`
+  padding: 1rem;
+  border: 1px solid #000;
+  border-radius: 0.25rem;
+  background: transparent;
+  padding: 1.5rem;
+  font-size: 1rem;
+
+  &:hover {
+    background: rgb(254, 235, 200);
+  }
+`;
+
 const PhotoBox = styled.div`
+  ${space}
+  ${typography}
+
   &.photo {
     transition: opacity 1s ease-in;
     opacity: 1;
@@ -47,21 +68,23 @@ export const Main = () => {
   const catUrl = useSelector(makeCatUrlSelector);
 
   return (
-    <div className="text-center">
+    <Box textAlign="center">
       <div>
-        <button type="button" disabled={isLoading} onClick={getCats}>
+        <Button type="button" disabled={isLoading} onClick={getCats}>
           Another
-        </button>
+        </Button>
       </div>
 
       <PhotoBox
-        className={`photo text-center mt-8 ${isLoading ? 'hidden' : ''}`}
+        textAlign="center"
+        mt={3}
+        className={`photo ${isLoading ? 'hidden' : ''}`}
       >
         {catUrl && (
           <img src={catUrl} alt="cat" onLoad={() => setIsLoading(false)} />
         )}
       </PhotoBox>
-    </div>
+    </Box>
   );
 };
 
